@@ -1,0 +1,31 @@
+@import '../../common/theme/variables.scss';
+
+.button {
+    &__base {
+        display: block;
+        margin: auto;
+        padding: $baseline*2;
+        border: 1px solid transparent;
+        border-radius: $baseline*2;
+        background-color: white;
+        font-size: $baseline*2;
+        width: fit-content;
+        min-width: 100px;
+
+        @media (min-width: $desktop) {
+            font-size: $baseline*3;
+        }
+
+        &--generator {
+            background-color: lightgrey;
+        }
+
+        &--remove {
+            background-color: lightsalmon;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+}

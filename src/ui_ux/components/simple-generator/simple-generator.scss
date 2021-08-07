@@ -1,0 +1,30 @@
+@import '../../common/theme/variables.scss';
+
+.simple-generator {
+    &__base {
+        background-color: lightsteelblue;
+        width: 99.99%;
+        min-width: $tablet;
+        height: 230px;
+        margin: $baseline*3 auto;
+        padding: $baseline*4;
+        box-sizing: border-box;
+
+        @media (min-width: $desktop) {
+            height: 350px;
+        }
+    }
+
+    &__title {
+        text-align: center;
+    }
+
+    &__instructions {       
+        text-align: center;
+    }
+
+    &__quote {
+        margin: $baseline*2;
+        text-align: center;
+    }
+}

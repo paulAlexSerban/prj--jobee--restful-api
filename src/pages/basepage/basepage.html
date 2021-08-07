@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Quotes Generator - Open Classrooms - FE - P5</title>
+</head>
+
+<body class="page__base">
+  <h1 class="page__title">Quote Generator</h1>
+
+  <div class="simple-generator__base">
+    <h2 class="simple-generator__title">Random Simple Quote Generator</h2>
+    <p class="simple-generator__instructions">
+      Click on the button to generate a random quote
+    </p>
+    <button class="simple-generator__button button__base button__base--generator">
+      Generate
+    </button>
+    <div class="simple-generator__quote"></div>
+  </div>
+
+  <div class="custom-generator__base">
+    <h2 class="custom-generator__title">Custom Quote Generator</h2>
+    <p class="custom-generator__instructions">
+      First choose a type of quote:
+    </p>
+    <div class="switch">
+      <p>Wisdom</p>
+      <label class="switch__base">
+        <input class="switch__input switch-button" type="checkbox" />
+        <spam class="switch__slider"></spam>
+      </label>
+      <p>Travel</p>
+    </div>
+    <p class="custom-generator__instructions">
+      Now choose how many quotes would you like:
+    </p>
+    <div class="custom-generator__buttons-container">
+      <button class="button__base button__base--generator custom-generator__button" data-quotes="1">
+        One
+      </button>
+      <button class="button__base button__base--generator custom-generator__button" data-quotes="2">
+        Two
+      </button>
+      <button class="button__base button__base--generator custom-generator__button" data-quotes="3">
+        Three
+      </button>
+      <button class="button__base button__base--generator custom-generator__button" data-quotes="4">
+        Four
+      </button>
+      <button class="button__base button__base--generator custom-generator__button" data-quotes="5">
+        Five
+      </button>
+    </div>
+    <button class="button__base button__base--remove">
+      Clear Quotes
+    </button>
+    <div class="custom-generator__quotes"></div>
+  </div>
+</body>
+
+</html>
