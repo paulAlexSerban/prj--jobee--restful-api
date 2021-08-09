@@ -1,57 +1,57 @@
-@import '../../common/theme/variables.scss';
+@import "../../abstracts/variables.scss";
 
 .switch {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 
-    &__base {
-        width: 150px;
-        height: 34px;
-        display: block;
-        position: relative;
-        margin: auto $baseline*3;
+  &__base {
+    width: 150px;
+    height: 34px;
+    display: block;
+    position: relative;
+    margin: auto $basesize * 3;
+  }
+
+  &__input {
+    width: 0;
+    height: 0;
+    opacity: 0;
+
+    &:checked + spam {
+      background-color: #2196f3;
     }
 
-    &__input {
-        width: 0;
-        height: 0;
-        opacity: 0;
-
-        &:checked + spam {
-            background-color:#2196f3;
-        }
-
-        &:focus + spam {
-            box-shadow: 0 0 1px #2196f3;
-        }
-
-        &:checked +spam:before {
-            transform: translateX(117px);
-        }
+    &:focus + spam {
+      box-shadow: 0 0 1px #2196f3;
     }
 
-    &__slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: red;
-        transition: 0.4s;
-        border-radius: 34px;
-
-        &::before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: 0.4s;
-            border-radius: 50%;
+    &:checked + spam:before {
+      transform: translateX(117px);
     }
-}
+  }
+
+  &__slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: red;
+    transition: 0.4s;
+    border-radius: 34px;
+
+    &::before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+  }
 }

@@ -1,13 +1,15 @@
-// import JS Ccomponents
-import Page from './components/page/page';
-import Button from './components/button/button';
-import Switch from './components/switch/switch';
-import SimpleGenerator from './components/simple-generator/simple-generator';
-import CustomGenerator from './components/custom-generator/custom-generator';
+import './basepage.styles.scss';
 
-// initialize components
-const PAGES = new Page;
-const BUTTON = new Button;
-const SWITCH = new Switch;
-const SIMPLE_GENERATOR = new SimpleGenerator;
-const CUSTOM_GENERATOR = new CustomGenerator;
+// import JS Ccomponents
+// import Page from './components/page/page';
+// import Button from './components/button/button';
+// import Switch from './components/switch/switch';
+import SimpleGenerator from '../../ui_ux/layout/simple-generator/simple-generator';
+new SimpleGenerator;
+import CustomGenerator from '../../ui_ux/layout/custom-generator/custom-generator';
+new CustomGenerator;
+
+// // initialize components
+// const PAGES = new Page;
+// const BUTTON = new Button;
+// const SWITCH = new Switch;

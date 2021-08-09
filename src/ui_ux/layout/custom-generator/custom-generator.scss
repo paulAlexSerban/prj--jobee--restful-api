@@ -1,4 +1,4 @@
-@import '../../common/theme/variables.scss';
+@import '../../abstracts/variables.scss';
 
 .custom-generator {
     &__base {
@@ -7,7 +7,7 @@
         min-width: $tablet;
         height: 600px;
         margin: auto;
-        padding: $baseline*3;
+        padding: $basesize*3;
         box-sizing: border-box;
 
         @media (min-width: $desktop) {
@@ -31,7 +31,7 @@
         margin: 24px 0;
 
         > button {
-            margin: $baseline*3;
+            margin: $basesize*3;
         }
     }
 

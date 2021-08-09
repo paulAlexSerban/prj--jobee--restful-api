@@ -1,4 +1,4 @@
-@import '../../common/theme/variables.scss';
+@import '../../abstracts/variables.scss';
 
 .simple-generator {
     &__base {
@@ -6,8 +6,8 @@
         width: 99.99%;
         min-width: $tablet;
         height: 230px;
-        margin: $baseline*3 auto;
-        padding: $baseline*4;
+        margin: $basesize*3 auto;
+        padding: $basesize*4;
         box-sizing: border-box;
 
         @media (min-width: $desktop) {
@@ -24,7 +24,7 @@
     }
 
     &__quote {
-        margin: $baseline*2;
+        margin: $basesize*2;
         text-align: center;
     }
 }

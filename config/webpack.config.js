@@ -28,8 +28,12 @@ const getEntries = () =>
           filename: `${page}.html`,
           description: 'Use JavaScript programming and algorithms to build a random quote generator. The quotes will be randomly constructed by assembling different pieces of a sentence',
           meta: {
-            viewport: "width=device-width, initial-scale=1, shrink-to-fit=no",
-          }
+            'viewport': "width=device-width, initial-scale=1, shrink-to-fit=no",
+            'Content-Security-Policy': { 
+              'http-equiv': 'Content-Security-Policy', 'content': 'default-src https:' 
+            }
+          },
+          charset: 'UTF-8'
         })
       )
     );
