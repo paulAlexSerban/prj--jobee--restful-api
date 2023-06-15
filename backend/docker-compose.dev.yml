@@ -1,0 +1,40 @@
+---
+version: "3.7"
+# ---------------------------------------------------------------------
+# | ExpressJS - MongoDB                                                   |
+# ---------------------------------------------------------------------
+
+services:
+    api-service:
+        build:
+            context: ./api
+            dockerfile: Dockerfile
+        image: paulserbandev/api
+        container_name: api-container
+        restart: always
+        volumes:
+            - ./api:/usr/src/app/
+            - /usr/src/app/node_modules
+        ports:
+            - $NODE_PORT:$NODE_DOCKER_PORT
+        depends_on:
+            - mongo-service
+        environment:
+            - DB_LOCAL_URI=${DB_LOCAL_URI}
+            - MONGO_USERNAME=${MONGO_USERNAME}
+            - MONGO_PASSWORD=${MONGO_PASSWORD}
+            - MONGO_HOSTNAME=${MONGO_HOSTNAME}
+            - MONGO_PORT=${MONGO_PORT}
+            - MONGO_DB=${MONGO_DB}
+            - GEOCODER_PROVIDER=${GEOCODER_PROVIDER}
+            - GEOCODER_API_KEY=${GEOCODER_API_KEY}
+    mongo-service:
+        image: mongo:latest
+        container_name: mongo-container
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+            - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+        ports:
+            - "27017:27017"
+        volumes:
+            - ./database/.tmp-data:/data/db
