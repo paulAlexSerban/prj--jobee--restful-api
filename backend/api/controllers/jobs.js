@@ -205,3 +205,57 @@ exports.deleteJob = async (req, res, next) => {
         });
     }
 };
+
+/**
+ * Get stats about a topic(job) (how many jobs, how many in a month, etc)
+ * @route GET /api/v1/stats/:topic
+ * @param {*} req
+ * @param {*} res
+ * @param {*} next
+ * @returns - response object
+ * @description This route will get stats about a topic(job) (how many jobs, how many in a month, etc)
+ * @example GET /api/v1/stats/node
+ * @example GET /api/v1/stats/react
+ */
+exports.getStats = async (req, res, next) => {
+    try {
+        const stats = await Job.aggregate([
+            {
+                $match: { $text: { $search: '"' + req.params.topic + '"' } },
+            },
+            {
+                $group: {
+                    _id: {
+                        $cond: {
+                            if: { $eq: [{ $type: "$experience" }, "string"] },
+                            then: { $toUpper: "$experience" },
+                            else: "$experience",
+                        },
+                    },
+                    totalJobs: { $sum: 1 },
+                    avgPosition: { $avg: "$positions" },
+                    avgSalary: { $avg: "$salary" },
+                    minSalary: { $min: "$salary" },
+                    maxSalary: { $max: "$salary" },
+                },
+            },
+        ]);
+        if (stats.length === 0) {
+            return res.status(404).json({
+                success: false,
+                error: `No stats found for ${req.params.topic}`,
+            });
+        }
+        res.status(200).json({
+            success: true,
+            message: `GET /api/v1/stats/:topic - Stats for ${req.params.topic}`,
+            data: stats,
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: "Server Error",
+            error: error.message,
+        });
+    }
+};
