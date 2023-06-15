@@ -1,6 +1,6 @@
 #!/bin/bash
 set -eo pipefail
-MODULIZE_VERSION=$(node -p "require('./package.json').version")
+PROJECT_VERSION=$(node -p "require('./package.json').version")
 PORJECT_NAME=$(node -p "require('./package.json').name")
 PORJECT_AUTHOR=$(node -p "require('./package.json').author")
 # makes sure the folder containing the script will be the root folder
@@ -32,9 +32,9 @@ usage() {
 
 print_header() {
   echo "================================================"
-  echo -e "   Modulize Project Automation v1.5.0"
+  echo -e "   Modulize Project Automation v1.7.0"
   echo -e "   Prj. Name: ${BLUE}${PORJECT_NAME}${NC}"
-  echo -e "   Prj. Version: ${BLUE}${MODULIZE_VERSION}${NC}"
+  echo -e "   Prj. Version: ${BLUE}${PROJECT_VERSION}${NC}"
   echo -e "   Prj. Author:  ${BLUE}${PORJECT_AUTHOR}${NC}"
   echo "================================================"
 }

@@ -1,10 +1,10 @@
 ---
 version: "3.7"
-# ---------------------------------------------------------------------
-# | ExpressJS - MongoDB                                                   |
-# ---------------------------------------------------------------------
 
 services:
+# ---------------------------------------------------------------------
+# | ExpressJS API                                                     |
+# ---------------------------------------------------------------------
     api-service:
         build:
             context: ./api
@@ -16,7 +16,7 @@ services:
             - ./api:/usr/src/app/
             - /usr/src/app/node_modules
         ports:
-            - $NODE_PORT:$NODE_DOCKER_PORT
+            - $API_PORT:$NODE_DOCKER_PORT
         depends_on:
             - mongo-service
         environment:
@@ -28,6 +28,10 @@ services:
             - MONGO_DB=${MONGO_DB}
             - GEOCODER_PROVIDER=${GEOCODER_PROVIDER}
             - GEOCODER_API_KEY=${GEOCODER_API_KEY}
+
+# ---------------------------------------------------------------------
+# | MongoDB Database Server                                            |
+# ---------------------------------------------------------------------
     mongo-service:
         image: mongo:latest
         container_name: mongo-container

@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(jobs)
 
 // set communication endpoint
-const PORT = process.env.NODE_PORT || 3000;
+const PORT = process.env.API_PORT || 3000;
 const HOSTNAME = process.env.HOSTNAME || "localhost";
 
 app.listen(PORT, HOSTNAME, () => {
