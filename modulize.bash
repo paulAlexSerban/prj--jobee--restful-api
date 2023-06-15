@@ -58,7 +58,7 @@ if [[ -z $PHASE ]]; then
   usage
 fi
 if [[ -z $ENV ]]; then
-  ENV=dev
+  ENV=development
 fi
 
 # Set NODE_ENV to the specified environment
