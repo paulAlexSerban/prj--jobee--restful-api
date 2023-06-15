@@ -4,6 +4,7 @@ const geocoder = require("../utils/geocoder");
 const ErrorHandler = require("../utils/ErrorHandler");
 const isValidObjectId = require("../utils/isValidObjectId");
 const catchAsyncErrors = require("../middlewares/catchAsyncErrors");
+const APIFilters = require("../utils/ApiFilters");
 /**
  * Get all jobs
  * @route GET /api/v1/jobs
@@ -15,12 +16,14 @@ const catchAsyncErrors = require("../middlewares/catchAsyncErrors");
  * @example http://localhost:3000/api/v1/jobs
  */
 exports.getJobs = catchAsyncErrors(async (req, res, next) => {
+    const { query, requestMethod, requestTime } = req;
     logger.info(`GET /api/v1/jobs`);
-    const jobs = await Job.find();
+    const apiFilters = new APIFilters(Job.find(), query).filter().sort().limitFields().paginate().searchByQuery();
+    const jobs = await apiFilters.query;
     res.status(200).json({
         success: true,
-        requestMethod: req.requestMethod,
-        requestTime: req.requestTime,
+        requestMethod: requestMethod,
+        requestTime: requestTime,
         message: "GET /api/v1/jobs - This route will display all jobs in the future",
         results: jobs.length,
         data: jobs,
