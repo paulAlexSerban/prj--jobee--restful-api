@@ -18,3 +18,5 @@
 - RUN: `bash modulize.bash -e dev -m backend -p compose-stop` - NOTE : This will stop the backend service
 - RUN: `bash modulize.bash -e dev -m backend -p compose-down` - NOTE : This will stop and remove the backend service
 - RUN: `bash modulize.bash -e dev -m backend -p docker-clean` - NOTE : This will remove all docker images, containers, volumes and persistant data from ./backend/database/.tmp-data
+- docker logs --tail 1000 -f api-container - NOTE : This will show the logs of the api-container
+- 

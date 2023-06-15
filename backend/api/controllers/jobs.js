@@ -1,7 +1,17 @@
 const logger = require("../utils/logger");
 const Job = require("../models/jobs");
 const geocoder = require("../utils/geocoder");
-// Get all jobs => /api/v1/jobs
+
+/**
+ * Get all jobs
+ * @route GET /api/v1/jobs
+ * @param {*} req
+ * @param {*} res
+ * @param {*} next
+ * @returns
+ * @description This route will display all jobs in the future
+ * @example http://localhost:3000/api/v1/jobs
+ */
 exports.getJobs = async (req, res, next) => {
     logger.info(`GET /api/v1/jobs`);
     try {
@@ -23,7 +33,51 @@ exports.getJobs = async (req, res, next) => {
     }
 };
 
-// Create new job => /api/v1/jobs
+/**
+ * Get job by id and slug
+ * @route GET /api/v1/job/:id/:slug
+ * @param {*} req
+ * @param {*} res
+ * @param {*} next
+ * @returns
+ * @description This route will display a single job by id and slug
+ * @example http://localhost:5000/api/v1/job/5f7f6d5f6d5f6d5f6d5f6d5f/this-is-a-test-job
+ */
+exports.getJob = async (req, res, next) => {
+    logger.info(`GET /api/v1/job/:id/:slug`);
+    try {
+        const job = await Job.find({ $and: [{ _id: req.params.id }, { slug: req.params.slug }] });
+        if (!job || job.length === 0) {
+            return res.status(404).json({
+                success: false,
+                error: "No job found",
+            });
+        }
+        res.status(200).json({
+            success: true,
+            requestMethod: req.requestMethod,
+            requestTime: req.requestTime,
+            message: "GET /api/v1/job/:id/:slug - This route will display a single job by id and slug",
+            data: job,
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: "Server Error",
+            error: error.message,
+        });
+    }
+};
+
+/**
+ * Create new job
+ * @route POST /api/v1/jobs
+ * @param {*} req
+ * @param {*} res
+ * @param {*} next
+ * @returns
+ * @description This route will create a new job
+ */
 exports.newJob = async (req, res, next) => {
     logger.info(`POST /api/v1/job/new`);
     try {
@@ -42,7 +96,13 @@ exports.newJob = async (req, res, next) => {
     }
 };
 
-// search jobs within radius => /api/v1/jobs/:zipcode/:distance
+/**
+ * Get jobs within a radius
+ * @route GET /api/v1/jobs/:zipcode/:distance
+ * @param {*} req - request object
+ * @param {*} res - response object
+ * @param {*} next - next middleware
+ */
 exports.getJobsInRadius = async (req, res, next) => {
     logger.info(`GET /api/v1/jobs/:zipcode/:distance`);
     const { zipcode, distance } = req.params;
@@ -78,7 +138,14 @@ exports.getJobsInRadius = async (req, res, next) => {
     }
 };
 
-// update job => /api/v1/jobs/:id
+/**
+ * Update a job
+ * @route PUT /api/v1/jobs/:id
+ * @param {*} req - request object
+ * @param {*} res - response object
+ * @param {*} next - next middleware
+ * @returns - response object
+ */
 exports.updateJob = async (req, res, next) => {
     try {
         let job = await Job.findById(req.params.id);
@@ -91,12 +158,44 @@ exports.updateJob = async (req, res, next) => {
 
         job = await Job.findByIdAndUpdate(req.params.id, req.body, {
             new: true,
-            runValidators: true
+            runValidators: true,
         });
         res.status(200).json({
             success: true,
             message: `PUT /api/v1/jobs/:id - Job updated`,
             data: job,
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: "Server Error",
+            error: error.message,
+        });
+    }
+};
+
+/**
+ * Delete a job
+ * @route DELETE /api/v1/job/:id
+ * @param {*} req - request object
+ * @param {*} res - response object
+ * @param {*} next - next middleware
+ * @returns - response object
+ */
+exports.deleteJob = async (req, res, next) => {
+    try {
+        const job = await Job.findByIdAndDelete(req.params.id);
+        if (!job) {
+            return res.status(404).json({
+                success: false,
+                error: "No job found",
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            message: `DELETE /api/v1/jobs/:id - Job deleted`,
+            data: {},
         });
     } catch (error) {
         res.status(500).json({
