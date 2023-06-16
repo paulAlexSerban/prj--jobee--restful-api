@@ -8,7 +8,7 @@ services:
     api-service:
         build:
             context: ./api
-            dockerfile: Dockerfile
+            dockerfile: dev.Dockerfile
         image: paulserbandev/api
         container_name: api-container
         restart: always

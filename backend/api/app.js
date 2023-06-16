@@ -4,7 +4,7 @@ const logger = require("./utils/logger");
 const connectDatabase = require("./config/database");
 const errorMiddleware = require("./middlewares/errors");
 // importing all routes
-const jobs = require("./routes/jobs");
+const jobs = require("./routes/jobRoutes");
 const ErrorHandler = require("./utils/ErrorHandler");
 
 const app = express();

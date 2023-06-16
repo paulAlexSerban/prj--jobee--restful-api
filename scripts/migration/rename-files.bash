@@ -4,8 +4,8 @@
 directoryPath="."
 
 # Define old and new file names
-oldFileName=".env.common"
-newFileName=".env.common"
+oldFileName=".env"
+newFileName=".env"
 
 # Use the find command to locate files with the old file name
 # Note: This will not do anything if the old file name is the same as the new file name

@@ -1,8 +1,6 @@
 const ErrorHandler = require("../utils/ErrorHandler");
 const logger = require("../utils/logger");
 
-console.log(process.env.NODE_ENV)
-
 module.exports = (err, req, res, next) => {
     err.statusCode = err.statusCode || 500;
     logger.error(err.stack);

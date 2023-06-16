@@ -1,5 +1,5 @@
 const logger = require("../utils/logger");
-const Job = require("../models/jobs");
+const Job = require("../models/Job");
 const geocoder = require("../utils/geocoder");
 const ErrorHandler = require("../utils/ErrorHandler");
 const isValidObjectId = require("../utils/isValidObjectId");
